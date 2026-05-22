@@ -1,0 +1,14 @@
+pyproject.toml
+compass/__init__.py
+compass/design.py
+compass/indexing.py
+compass/inference.py
+compass/likelihood.py
+compass/model.py
+compass/splines.py
+compass/tests.py
+compass/tests_classes.py
+compass.egg-info/PKG-INFO
+compass.egg-info/SOURCES.txt
+compass.egg-info/dependency_links.txt
+compass.egg-info/top_level.txt
