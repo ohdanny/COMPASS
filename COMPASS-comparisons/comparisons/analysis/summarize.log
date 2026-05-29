@@ -1,0 +1,120 @@
+Empirical rejection rate per scenario:
+regime       expr                iso compass  spvc
+   alt nonspatial single_interaction   0.990 1.000
+   alt nonspatial    two_interaction   1.000 1.000
+   alt    spatial single_interaction   0.980 1.000
+   alt    spatial    two_interaction   1.000 1.000
+  null nonspatial        shared_null   0.095 1.000
+  null nonspatial        strict_null   0.110 0.065
+  null    spatial        shared_null   0.070 1.000
+  null    spatial        strict_null   0.090 0.055
+
+Mean across regime:
+  Type-I error (nulls)  : compass=0.091  spvc=0.530
+  Power        (alts)   : compass=0.993  spvc=1.000
+
+Pooled BH at q=0.05 (each rep treated as one gene):
+  compass: rejections= 833  FDR=0.052  power=0.988
+  spvc   : rejections=1217  FDR=0.343  power=1.000
+
+========================================================================
+LEVEL 2 — Cell-type localization (alpha=0.05)
+========================================================================
+Methods: COMPASS wald (per cell type)  |  spVC Simes(gamma_X{t+1}) across isoforms
+Metrics: rejection rate, TPR (active cells), FPR (inactive cells), active-cell-type recovery
+
+Rejection rate per (scenario, cell type):
+regime       expr                iso  t compass  spvc
+ power nonspatial single_interaction  0   0.800 0.155
+ power nonspatial    two_interaction  0   0.795 0.200
+ power nonspatial    two_interaction  1   0.855 0.340
+ power    spatial single_interaction  0   0.715 0.250
+ power    spatial    two_interaction  0   0.815 0.380
+ power    spatial    two_interaction  1   0.895 0.470
+type-I nonspatial        shared_null  0   0.055 0.070
+type-I nonspatial        shared_null  1   0.065 0.285
+type-I nonspatial single_interaction  1   0.050 0.100
+type-I nonspatial        strict_null  0   0.085   NaN
+type-I nonspatial        strict_null  1   0.065   NaN
+type-I    spatial        shared_null  0   0.030 0.155
+type-I    spatial        shared_null  1   0.050 0.325
+type-I    spatial single_interaction  1   0.065 0.205
+type-I    spatial        strict_null  0   0.060   NaN
+type-I    spatial        strict_null  1   0.060   NaN
+
+Pooled cell-type metrics:
+  compass: TPR=0.812  FPR=0.059
+  spvc   : TPR=0.299  FPR=0.114
+
+Active cell-type recovery (alt scenarios, per-rep exact match):
+  compass: 0.703
+  spvc   : 0.146
+
+========================================================================
+LEVEL 3 — (t,k) pair localization (alpha=0.05, BH q=0.05)
+========================================================================
+Methods: COMPASS wald_by_cat  |  spVC gamma_X{t+1} from iso k's varying model
+Metrics: rejection rate, power (active pairs), FDR, exact-set recovery, mean Jaccard
+
+Rejection rate per (scenario, t, k):
+regime       expr                iso  t  k compass  spvc
+ power nonspatial single_interaction  0  0   0.765 0.015
+ power nonspatial    two_interaction  0  0   0.755 0.035
+ power nonspatial    two_interaction  1  1   0.835 0.290
+ power    spatial single_interaction  0  0   0.725 0.060
+ power    spatial    two_interaction  0  0   0.780 0.170
+ power    spatial    two_interaction  1  1   0.850 0.365
+type-I nonspatial        shared_null  0  0   0.045 0.010
+type-I nonspatial        shared_null  0  1   0.065 0.085
+type-I nonspatial        shared_null  0  2     NaN 0.005
+type-I nonspatial        shared_null  1  0   0.055 0.275
+type-I nonspatial        shared_null  1  1   0.055 0.030
+type-I nonspatial        shared_null  1  2     NaN 0.010
+type-I nonspatial single_interaction  0  1   0.070 0.100
+type-I nonspatial single_interaction  0  2     NaN 0.050
+type-I nonspatial single_interaction  1  0   0.045 0.075
+type-I nonspatial single_interaction  1  1   0.040 0.040
+type-I nonspatial single_interaction  1  2     NaN 0.005
+type-I nonspatial        strict_null  0  0   0.090   NaN
+type-I nonspatial        strict_null  0  1   0.045   NaN
+type-I nonspatial        strict_null  1  0   0.060   NaN
+type-I nonspatial        strict_null  1  1   0.055   NaN
+type-I nonspatial    two_interaction  0  1   0.035 0.195
+type-I nonspatial    two_interaction  0  2     NaN 0.005
+type-I nonspatial    two_interaction  1  0   0.070 0.130
+type-I nonspatial    two_interaction  1  2     NaN 0.000
+type-I    spatial        shared_null  0  0   0.045 0.045
+type-I    spatial        shared_null  0  1   0.050 0.095
+type-I    spatial        shared_null  0  2     NaN 0.050
+type-I    spatial        shared_null  1  0   0.055 0.315
+type-I    spatial        shared_null  1  1   0.050 0.065
+type-I    spatial        shared_null  1  2     NaN 0.005
+type-I    spatial single_interaction  0  1   0.030 0.170
+type-I    spatial single_interaction  0  2     NaN 0.115
+type-I    spatial single_interaction  1  0   0.070 0.160
+type-I    spatial single_interaction  1  1   0.045 0.065
+type-I    spatial single_interaction  1  2     NaN 0.000
+type-I    spatial        strict_null  0  0   0.050   NaN
+type-I    spatial        strict_null  0  1   0.070   NaN
+type-I    spatial        strict_null  1  0   0.060   NaN
+type-I    spatial        strict_null  1  1   0.055   NaN
+type-I    spatial    two_interaction  0  1   0.080 0.330
+type-I    spatial    two_interaction  0  2     NaN 0.080
+type-I    spatial    two_interaction  1  0   0.045 0.265
+type-I    spatial    two_interaction  1  2     NaN 0.045
+
+Pooled pair-level metrics:
+  compass: power=0.785  FPR(inactive pairs)=0.055
+  spvc   : power=0.156  FPR(inactive pairs)=0.094
+
+Per-rep BH at q=0.05 (across tested pairs in that rep), averaged across reps:
+  compass: mean realized FDR=0.045  mean realized power=0.640
+  spvc   : mean realized FDR=0.534  mean realized power=0.126
+
+Exact active-set recovery & Jaccard (alpha=0.05 raw, per rep):
+  compass:
+    nulls : exact_recovery=0.839  jaccard=0.839  (trivially 1.0 if no false rejections)
+    alts  : exact_recovery=0.611  jaccard=0.731
+  spvc   :
+    nulls : exact_recovery=0.791  jaccard=0.791  (trivially 1.0 if no false rejections)
+    alts  : exact_recovery=0.006  jaccard=0.092
